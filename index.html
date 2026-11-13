@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naman Jain · AI engineer</title>
+<meta name="description" content="Naman Jain, AI engineer at SymphonyAI in Bengaluru, working on agentic AI and LLM applications. My path and six systems I have built, drawn as one pipeline.">
+<meta property="og:title" content="Naman Jain · AI engineer">
+<meta property="og:description" content="My path and five systems I have built, drawn as one pipeline.">
+<meta name="theme-color" content="#f6f5f1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f6f5f1'/%3E%3Cpath d='M16 3v26' stroke='%23111' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ff4f17'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f1; --card: #fff; --ink: #111110; --mute: #6b6a64; --faint: #a3a198; --rule: #d9d6cc; --soft: #ecebe5;
+    --acc: #ff4f17; --accsoft: #ffe4d9; --ok: #1f8a4c; --bad: #c4314b;
+    --sans: "Schibsted Grotesk", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --rail: 30px; --gut: 92px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: underline; text-decoration-color: var(--rule); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--acc); }
+  :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+  ::selection { background: var(--accsoft); }
+  p { margin: 0 0 12px; }
+  .mono { font: 12px/1.5 var(--mono); letter-spacing: .02em; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
+
+  /* header */
+  header { padding: 72px 0 48px var(--gut); position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 48px; align-items: end; }
+  .index { border: 1px solid var(--ink); background: var(--card); font-size: 14.5px; }
+  .index .ih { display: flex; justify-content: space-between; padding: 9px 14px; border-bottom: 1px solid var(--ink); font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+  .index .ih span { color: var(--mute); letter-spacing: .02em; text-transform: none; }
+  .index a { display: grid; grid-template-columns: 30px 1fr auto; align-items: baseline; padding: 6px 14px; text-decoration: none; border-bottom: 1px solid var(--soft); }
+  .index a:last-child { border-bottom: 0; }
+  .index a b { font: 500 12px var(--mono); color: var(--faint); }
+  .index a em { font: 11px var(--mono); font-style: normal; color: var(--faint); }
+  .index a:hover { background: var(--soft); } .index a:hover b { color: var(--acc); }
+  .index a.sep { border-top: 1px solid var(--rule); }
+  .kick { color: var(--mute); }
+  h1 { font: 700 clamp(48px, 8vw, 92px)/.92 var(--sans); letter-spacing: -.045em; margin: 14px 0 22px; }
+  .lede { font: 400 clamp(20px, 2.3vw, 24px)/1.45 var(--sans); max-width: 33em; margin: 0 0 22px; color: #2d2c29; }
+  .lede em { font-style: normal; color: var(--acc); }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 22px; font: 500 15px var(--sans); }
+
+  /* track */
+  .track { position: relative; padding-left: var(--gut); padding-bottom: 40px; }
+  .rail { position: absolute; left: var(--rail); top: 0; bottom: 0; width: 2px; background: var(--rule); }
+  .fill { position: absolute; left: 0; top: 0; width: 2px; background: var(--ink); height: 0; }
+  .pkt { position: absolute; left: -7px; top: -8px; width: 16px; height: 16px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 6px #ff4f1726, 0 0 18px #ff4f1780; will-change: transform; z-index: 2; }
+  .st { position: relative; padding: 30px 0 34px; scroll-margin-top: 30vh; }
+  .mk { position: absolute; left: calc(var(--rail) - var(--gut) - 7px); top: 36px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--ink); z-index: 1; transition: background .2s, border-color .2s; }
+  .st.svc .mk { border-radius: 2px; }
+  .st.on .mk { background: var(--ink); }
+  .st.sys::before, .st.side::before { content: ""; position: absolute; left: calc(var(--rail) - var(--gut) + 9px); top: 43px; width: calc(var(--gut) - var(--rail) - 9px); height: 2px; background: var(--rule); transition: background .3s; }
+  .st.sys.on::before { background: var(--ink); }
+  .st.side::before { background: none; border-top: 2px dashed var(--rule); }
+  .tag { display: flex; align-items: center; gap: 10px; color: var(--mute); margin-bottom: 6px; }
+  .tag b { font-weight: 500; color: var(--ink); }
+  .led { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); }
+  .st.on .led { background: var(--ok); }
+  h2 { font: 700 clamp(26px, 3.3vw, 36px)/1.08 var(--sans); letter-spacing: -.03em; margin: 0 0 10px; }
+  .st > p, .plain { max-width: 40em; color: #33322e; }
+  .when { font: 500 13px var(--mono); color: var(--acc); }
+  .st.path { padding: 20px 0 22px; }
+  .st.path .mk { top: 26px; width: 12px; height: 12px; left: calc(var(--rail) - var(--gut) - 5px); }
+  .st.path h2 { font: 600 21px/1.25 var(--sans); letter-spacing: -.015em; margin: 2px 0 4px; }
+  .st.path p { font-size: 15.5px; color: var(--mute); margin: 0; max-width: 42em; }
+  .st.path .when { display: inline; margin-left: 6px; }
+  .st.now { padding: 26px 0 30px; }
+  .st.now .mk { background: var(--acc); border-color: var(--acc); box-shadow: 0 0 0 6px #ff4f1726; }
+  .nowbox { background: var(--card); border: 1px solid var(--ink); border-left: 4px solid var(--acc); padding: 18px 22px 18px; max-width: 760px; }
+  .nowhd { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .nowbox h2 { font: 700 26px/1.15 var(--sans); letter-spacing: -.025em; margin: 0 0 8px; }
+  .live { display: inline-flex; align-items: center; gap: 6px; color: var(--acc); font-weight: 500; }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); animation: bl 1.6s infinite; }
+  .roles { list-style: none; margin: 0 0 12px; padding: 0; color: var(--mute); }
+  .roles li { padding: 2px 0; } .roles b { color: var(--ink); font-weight: 500; display: inline-block; min-width: 150px; }
+  .nowbox p { font-size: 16px; color: #33322e; margin: 0 0 4px; max-width: 44em; }
+  .nowbox .facts { padding: 10px 0 0; }
+  .nowbox .nda { font-size: 14px; color: var(--mute); margin-top: 12px; }
+  .demo { display: grid; grid-template-columns: 1.1fr 1fr; border-top: 1px solid var(--rule); }
+  @media (max-width: 1000px) { .demo { grid-template-columns: 1fr; } .demo > div + div { border-left: 0; border-top: 1px solid var(--rule); } }
+  .demo > div { padding: 18px 22px 20px; }
+  .demo > div + div { border-left: 1px solid var(--rule); background: #fcfbf8; }
+  .demo h4, .tryrep h4 { font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); margin: 0 0 10px; }
+  .leaves { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+  .leaves button { padding: 0; border: 1px solid var(--rule); background: none; cursor: pointer; aspect-ratio: 1; overflow: hidden; }
+  .leaves button img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .15s; }
+  .leaves button:hover img { transform: scale(1.06); }
+  .leaves button.sel { outline: 2px solid var(--acc); outline-offset: 1px; }
+  .up { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 14px; color: var(--mute); flex-wrap: wrap; }
+  .up label { font: 500 13px var(--sans); border: 1px solid var(--ink); padding: 6px 11px; cursor: pointer; color: var(--ink); background: var(--card); }
+  .up input { display: none; }
+  .res { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: start; }
+  .res canvas { width: 120px; height: 120px; border: 1px solid var(--rule); background: var(--soft); image-rendering: pixelated; }
+  .pstat { font: 12px var(--mono); color: var(--mute); margin-bottom: 8px; }
+  .pstat.live { color: var(--ok); }
+  .bars { display: grid; gap: 9px; }
+  .bar1 { font-size: 14.5px; }
+  .res > div { min-width: 0; }
+  .bar1 .t { display: flex; justify-content: space-between; gap: 10px; }
+  .bar1 .t b { font-weight: 600; } .bar1 .t span { font: 12px var(--mono); color: var(--mute); }
+  .bar1 .g { height: 6px; background: var(--soft); margin-top: 4px; }
+  .bar1 .g i { display: block; height: 100%; background: var(--ink); width: 0; transition: width .35s; }
+  .bar1:first-child .g i { background: var(--acc); }
+  .truth { font-size: 13.5px; color: var(--mute); margin-top: 10px; }
+  .truth .y { color: var(--ok); } .truth .x { color: var(--bad); }
+  .dnote { font-size: 13px; color: var(--mute); margin: 12px 0 0; }
+  .tryrep { border-top: 1px solid var(--rule); padding: 18px 22px 20px; }
+  .tryrep img { display: block; width: 100%; max-width: 760px; height: auto; border: 1px solid var(--rule); }
+  .trycols { display: grid; grid-template-columns: repeat(3, 1fr); max-width: 760px; font: 11px var(--mono); color: var(--mute); text-align: center; margin-top: 5px; }
+  .mini { border-collapse: collapse; font-size: 14px; margin-top: 14px; max-width: 760px; width: 100%; }
+  .mini th { font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); text-align: left; border-bottom: 1px solid var(--ink); padding: 5px 10px 5px 0; }
+  .mini td { border-bottom: 1px solid var(--rule); padding: 6px 10px 6px 0; }
+  .mini td b { font-weight: 600; }
+  .cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+  .cmp > div { min-width: 0; }
+  .cmp h5 { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; margin: 0 0 8px; display: flex; gap: 6px; align-items: center; }
+  .cmp h5 i { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+  .cmp .after h5 i { background: var(--acc); }
+  .cmp .before .bar1 .g i, .cmp .before .bar1:first-child .g i { background: var(--faint); }
+  .cmp .before .bar1 .t b { font-weight: 500; color: var(--mute); }
+  .verdict { font: 500 12px var(--mono); margin-top: 8px; } .verdict.y { color: var(--ok); } .verdict.x { color: var(--bad); }
+  .bnote { font-size: 12.5px; color: var(--faint); margin-top: 6px; line-height: 1.4; }
+  .room { display: grid; grid-template-columns: 250px 1fr; gap: 22px; }
+  .pick h5 { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mute); margin: 0 0 6px; }
+  .pick .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-bottom: 14px; }
+  .pick #tp { grid-template-columns: repeat(5, 1fr); }
+  .pick button { padding: 0; border: 1px solid var(--rule); background: #fff; cursor: pointer; aspect-ratio: 3 / 4; overflow: hidden; }
+  .pick button img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pick button.sel { outline: 2px solid var(--acc); outline-offset: 1px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pair figure { margin: 0; }
+  .pair img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; border: 1px solid var(--rule); background: var(--soft); }
+  .pair figcaption { font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--mute); margin-top: 6px; display: flex; gap: 6px; align-items: center; }
+  .pair figcaption i { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); }
+  .pair figure + figure figcaption i { background: var(--acc); }
+  .changes { margin: 12px 0 0; padding-left: 18px; font-size: 14.5px; color: #33322e; max-width: 760px; }
+  .changes li { margin-bottom: 4px; }
+  .changes em { font-style: normal; font: 500 11px var(--mono); color: var(--mute); margin-left: 4px; }
+  .lk { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .lk a { font: 12px var(--mono); }
+  .golive { font: 500 13px var(--sans); color: #fff; background: var(--acc); border: 0; padding: 6px 12px; cursor: pointer; }
+  .golive:hover { background: #e2410e; }
+  .tabs { display: flex; gap: 0; margin: 16px 22px 0; border-bottom: 1px solid var(--rule); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .tabs button { font: 500 14px var(--sans); color: var(--mute); background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 14px 9px; margin-bottom: -1px; cursor: pointer; white-space: nowrap; }
+  .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--acc); }
+  .tabs button .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--acc); margin-right: 6px; vertical-align: 1px; }
+  .panel[hidden] { display: none; }
+  .tabs .short { display: none; }
+  .panel.pad { padding: 18px 22px 20px; }
+  .panel .demo { border-top: 0; }
+  .rp { max-width: 820px; }
+  .rp p { font-size: 15.5px; color: #33322e; margin: 0 0 10px; }
+  .rp h4 { font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); margin: 16px 0 8px; }
+  .rp h4:first-child { margin-top: 0; }
+  #fit { padding: 18px 22px 20px; }
+  .ba { position: relative; width: 100%; max-width: 420px; aspect-ratio: 3 / 4; border: 1px solid var(--rule); background: var(--soft); overflow: hidden; user-select: none; touch-action: pan-y; }
+  .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ba img.after { clip-path: inset(0 0 0 50%); }
+  .ba .handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: #fff; box-shadow: 0 0 0 1px #0003; pointer-events: none; }
+  .ba .handle span { position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; background: #fff; box-shadow: 0 1px 4px #0005; }
+  .ba .handle span::before { content: "‹ ›"; position: absolute; inset: 0; display: grid; place-items: center; font: 600 13px var(--sans); color: var(--ink); letter-spacing: 2px; }
+  .ba .side { position: absolute; top: 10px; font: 500 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; background: #fffd; padding: 3px 7px; pointer-events: none; }
+  .ba .side.l { left: 10px; color: var(--mute); } .ba .side.r { right: 10px; color: var(--acc); }
+  .ba input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+  .grp { position: relative; padding: 34px 0 0; font: 500 11px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); }
+  .grp::before { content: ""; position: absolute; left: calc(var(--rail) - var(--gut) - 3px); top: 39px; width: 8px; height: 2px; background: var(--ink); }
+
+  /* system card */
+  .card { background: var(--card); border: 1px solid var(--rule); margin-top: 6px; }
+  .card .hd { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; align-items: baseline; padding: 18px 22px 0; }
+  .card h2 { margin: 0; }
+  .card .one { font: 400 18px/1.45 var(--sans); color: #3a3934; padding: 6px 22px 0; max-width: 46em; }
+  .card { transition: border-color .2s; } .card:hover { border-color: #b9b6ab; }
+  .card .stack { color: var(--mute); padding: 10px 22px 12px; border-top: 1px solid var(--rule); background: #fcfbf8; }
+  .card .stack a { color: var(--ink); }
+  .dia { padding: 24px 22px 20px; overflow: hidden; margin-top: 16px; border-top: 1px solid var(--rule); background-color: #faf9f6; background-image: radial-gradient(#d9d6cc 1px, transparent 1.2px); background-size: 18px 18px; }
+  .dia svg { display: block; width: 100%; height: auto; margin: 0 auto; }
+  .dia svg.v { display: none; }
+  .node rect { fill: var(--bg); stroke: var(--ink); stroke-width: 1; }
+  .node text { fill: var(--ink); font: 500 13.5px var(--sans); }
+  .node text.s { fill: var(--mute); font: 10.5px var(--mono); }
+  .edge { fill: none; stroke: var(--faint); stroke-width: 1.3; }
+  .edge.loop { stroke-dasharray: 3 4; }
+  .pk { fill: var(--faint); transition: fill .3s; }
+  .st.on .pk { fill: var(--acc); }
+  .three { display: grid; grid-template-columns: 1fr 1.35fr 1fr; border-top: 1px solid var(--rule); }
+  .three > div { padding: 14px 22px 18px; font-size: 15.5px; line-height: 1.55; color: #33322e; }
+  .three > div + div { border-left: 1px solid var(--rule); }
+  .three h4 { font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); margin: 0 0 6px; }
+  .three .lim h4 { color: var(--bad); }
+  .routed .card, .routed .box, .routed .nowbox { border-color: var(--acc); box-shadow: 0 0 0 3px var(--accsoft); }
+  .badge { display: none; font: 500 12px var(--mono); color: #fff; background: var(--acc); padding: 2px 8px; }
+  .routed .badge { display: inline-block; }
+
+  /* router */
+  .box { background: var(--card); border: 1px solid var(--ink); }
+  .ask { display: flex; border-bottom: 1px solid var(--rule); }
+  .ask span { font: 500 13px var(--mono); color: var(--acc); padding: 15px 0 0 18px; }
+  .ask input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 500 19px var(--sans); color: var(--ink); padding: 12px 14px; }
+  .ask input::placeholder { color: var(--faint); font-weight: 400; }
+  .bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 18px; color: var(--mute); }
+  .bar .led.live { background: var(--ok); } .bar .led.busy { background: var(--acc); animation: bl 1s infinite; }
+  .bar button { margin-left: auto; font: 12px var(--mono); background: none; border: 1px solid var(--rule); padding: 2px 9px; cursor: pointer; color: var(--ink); }
+  @keyframes bl { 50% { opacity: .25; } }
+  .try { padding: 0 18px 14px; font-size: 14.5px; color: var(--mute); }
+  .try button { font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  .try button:hover { text-decoration-color: var(--acc); }
+  #routes:empty { display: none; }
+  #routes { border-top: 1px solid var(--rule); }
+  .route { display: grid; grid-template-columns: 24px 1fr auto; gap: 2px 10px; padding: 11px 18px; border-bottom: 1px solid var(--soft); text-decoration: none; }
+  .route:last-child { border-bottom: 0; }
+  .route .ar { font: 500 14px var(--mono); color: var(--acc); }
+  .route .n { font-weight: 600; } .route .s { font: 12px var(--mono); color: var(--mute); padding-top: 3px; }
+  .route p { grid-column: 2 / -1; margin: 0; font-size: 14.5px; color: var(--mute); line-height: 1.45; }
+  .route:hover .n { color: var(--acc); }
+  .note { padding: 10px 18px; font-size: 13.5px; color: var(--mute); }
+  details { margin-top: 14px; }
+  summary { cursor: pointer; font: 500 14.5px var(--sans); color: var(--ink); list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "+ "; font-family: var(--mono); color: var(--acc); }
+  details[open] summary::before { content: "− "; }
+  .evx { padding-top: 12px; max-width: 760px; }
+  .nums { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); background: var(--card); margin: 10px 0 12px; }
+  .nums div { padding: 12px 16px; } .nums div + div { border-left: 1px solid var(--rule); }
+  .nums .k { font-size: 13px; color: var(--mute); }
+  .nums .v { font: 700 32px/1.1 var(--sans); letter-spacing: -.03em; }
+  .nums .v small { font: 12px var(--mono); color: var(--mute); margin-left: 8px; letter-spacing: 0; }
+  .run { font: 500 14px var(--sans); background: var(--ink); color: var(--bg); border: 0; padding: 9px 15px; cursor: pointer; }
+  .run:disabled { opacity: .5; }
+  #evst { font-size: 13.5px; color: var(--mute); margin-left: 10px; }
+  .tbl { overflow-x: auto; margin-top: 14px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  th { text-align: left; font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mute); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--ink); }
+  td { padding: 7px 10px 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  td small { display: block; color: var(--faint); font-size: 12.5px; }
+  .y { color: var(--ok); font-weight: 600; } .x { color: var(--bad); }
+
+  /* path stations */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 36px; max-width: 860px; }
+  .side ul { list-style: none; margin: 8px 0 0; padding: 0; max-width: 46em; }
+  .side li { padding: 7px 0; border-bottom: 1px dashed var(--rule); font-size: 15.5px; color: #33322e; }
+  .side li b { font-weight: 600; color: var(--ink); }
+  .side li span { color: var(--mute); }
+  .sink .big { font: 700 clamp(30px, 5vw, 56px)/1.02 var(--sans); letter-spacing: -.04em; margin: 4px 0 18px; }
+  .sink .big a { color: var(--acc); text-decoration: none; }
+  .sink.on .mk { background: var(--acc); border-color: var(--acc); box-shadow: 0 0 0 6px #ff4f1726; }
+  .cbtn { font: 500 15px var(--sans); border: 1px solid var(--ink); background: none; padding: 9px 14px; cursor: pointer; color: var(--ink); text-decoration: none; display: inline-block; margin: 0 8px 8px 0; }
+  .cbtn.pri { background: var(--ink); color: var(--bg); }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 22px 0; }
+  .facts span { font: 500 12px var(--mono); padding: 3px 8px; background: var(--soft); color: var(--ink); }
+  .runs { border-top: 1px solid var(--rule); padding: 16px 22px 18px; }
+  .runs h4 { font: 500 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mute); margin: 0 0 10px; }
+  .log { border-top: 1px solid var(--rule); }
+  .log > summary { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding: 14px 22px; cursor: pointer; list-style: none; }
+  .log > summary::-webkit-details-marker { display: none; }
+  .log > summary::before { content: none; }
+  .log .lt { display: grid; gap: 1px; min-width: 190px; }
+  .log .lt b { font: 600 15px var(--sans); }
+  .log .lt span { font: 12px var(--mono); color: var(--mute); }
+  .thumbs { display: flex; gap: 8px; align-items: flex-start; }
+  .th { display: grid; gap: 4px; justify-items: center; background: none; border: 0; padding: 0; cursor: pointer; color: var(--mute); font: 10.5px var(--mono); }
+  .th i { display: block; width: 58px; height: 58px; background-size: 500% 100%; background-position: 100% 0; background-repeat: no-repeat; border: 1px solid var(--rule); transition: border-color .15s, transform .15s; }
+  .th:hover i { border-color: var(--ink); transform: translateY(-2px); }
+  .th.sel i { border: 2px solid var(--acc); }
+  .th.sel { color: var(--ink); }
+  .log .tog { margin-left: auto; font: 500 13px var(--sans); border: 1px solid var(--ink); padding: 5px 11px; white-space: nowrap; }
+  .log .tog::after { content: "Open log"; }
+  .log[open] .tog::after { content: "Close log"; }
+  .logbody { padding: 0 22px 18px; }
+  .rtabs { display: flex; flex-wrap: wrap; gap: 0; border: 1px solid var(--ink); width: max-content; max-width: 100%; margin-bottom: 12px; }
+  .rtabs button { font: 500 12.5px var(--mono); background: none; border: 0; border-right: 1px solid var(--rule); padding: 6px 11px; cursor: pointer; color: var(--ink); }
+  .rtabs button:last-child { border-right: 0; }
+  .rtabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+  .strip { position: relative; }
+  .strip img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); background: #fff; }
+  .cols { display: grid; grid-template-columns: repeat(5, 1fr); font: 11px var(--mono); color: var(--mute); margin-top: 5px; text-align: center; }
+  .rnote { font-size: 15.5px; color: #33322e; margin: 10px 0 0; max-width: 46em; }
+  .rnote b { font-weight: 600; }
+  .where { position: fixed; z-index: 5; right: 18px; top: 16px; font: 500 12px var(--mono); background: var(--card); border: 1px solid var(--ink); padding: 5px 10px; display: flex; gap: 8px; align-items: center; opacity: 0; transform: translateY(-6px); transition: opacity .2s, transform .2s; pointer-events: none; }
+  .where.show { opacity: 1; transform: none; }
+  .where i { width: 8px; height: 8px; border-radius: 50%; background: var(--acc); }
+  footer { padding: 20px 0 48px var(--gut); color: var(--mute); font-size: 13.5px; }
+
+  @media (max-width: 860px) {
+    header { grid-template-columns: 1fr; gap: 28px; }
+    .three { grid-template-columns: 1fr; } .three > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+    .two { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    :root { --rail: 11px; --gut: 34px; }
+    body { font-size: 16.5px; } .wrap { padding: 0 14px; }
+    header { padding-top: 44px; grid-template-columns: 1fr; gap: 28px; }
+    .st { padding: 22px 0 26px; } .mk { top: 28px; } .st.sys::before, .st.side::before { top: 35px; }
+    .card .hd, .card .one, .card .stack { padding-left: 16px; padding-right: 16px; }
+    .dia { padding: 18px 10px 10px; } .dia svg.h { display: none; } .dia svg.v { display: block; }
+    .three > div { padding: 12px 16px 14px; }
+    .facts, .runs, .logbody { padding-left: 16px; padding-right: 16px; }
+    .log > summary { padding: 12px 16px; gap: 10px; }
+    .log .lt { min-width: 0; width: 100%; }
+    .th i { width: 46px; height: 46px; } .th em { display: none; }
+    .log .tog { margin-left: 0; }
+    .demo { grid-template-columns: 1fr; } .demo > div { padding: 14px 16px 16px; } .demo > div + div { border-left: 0; border-top: 1px solid var(--rule); }
+    .leaves { grid-template-columns: repeat(4, 1fr); } .res { grid-template-columns: 88px 1fr; } .res canvas { width: 88px; height: 88px; }
+    .tryrep { padding: 14px 16px 16px; }
+    .room { grid-template-columns: 1fr; } .tabs { margin: 14px 16px 0; } .tabs .long { display: none; } .tabs .short { display: inline; } .tabs button { padding: 8px 10px 9px; } .panel.pad, #fit { padding: 14px 16px 16px; } .ba { max-width: none; } .pick .row { grid-template-columns: repeat(7, 1fr); } .cmp { grid-template-columns: 1fr; }
+    .nowbox { padding: 14px 16px; } .nowbox h2 { font-size: 22px; } .roles b { min-width: 0; display: block; }
+    .index a:not(.s) { display: none; } .index a.sep { border-top: 0; } .index .ih span { display: none; }
+    .card .stack { padding: 10px 16px 12px; }
+    .cols { font-size: 9px; }
+    .where { right: 10px; top: 10px; font-size: 11px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .pk { display: none; } * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header>
+  <div>
+  <div class="mono kick">AI ENGINEER · SYMPHONYAI · BENGALURU</div>
+  <h1>Naman Jain</h1>
+  <p class="lede">I work on agentic AI and LLM applications at SymphonyAI, on a conversational agent that enterprise IT teams use every day. Outside work I build models and the systems that carry them. This page is drawn like one of those systems: <em>scroll, and follow the packet</em> from where I started to what I am building now.</p>
+  <div class="links"><a href="mailto:abbadnaman@gmail.com">abbadnaman@gmail.com</a><a href="https://www.linkedin.com/in/naman-n-jain/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/namanabbad02" target="_blank" rel="noopener">GitHub</a></div>
+  </div>
+  <nav class="index" id="index" aria-label="Index of this page"></nav>
+</header>
+<div class="where" id="where" aria-hidden="true"><i></i><span id="wtxt"></span></div>
+
+<div class="track" id="track">
+  <div class="rail"><div class="fill" id="fill"></div><div class="pkt" id="pkt"></div></div>
+
+  <section class="st svc" id="router">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b>00</b> router</div>
+    <h2>Ask, and the router sends you to the right stage</h2>
+    <p class="plain">A small embedding model runs in your browser and routes your question to the part of this page that answers it. Nothing you type leaves your device.</p>
+    <div class="box">
+      <div class="ask"><span>›</span><input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="has he built anything with RAG?" aria-label="Ask about Naman's work"></div>
+      <div class="bar mono"><span class="led" id="led"></span><span id="st">keyword routing until the model loads</span><button id="load" hidden>load model · 23 MB</button></div>
+      <div class="try" id="try"></div>
+      <div id="routes" aria-live="polite"></div>
+    </div>
+    <details>
+      <summary>Is the router any good? Test it on <span id="nev"></span> questions</summary>
+      <div class="evx">
+        <p class="plain">Each question is paired with the stage it should reach. I compare plain keyword matching (BM25) with the embedding model. It runs on your machine and the misses stay in the table.</p>
+        <div class="nums"><div><div class="k">Keywords · right stage first</div><div class="v" id="kv">–</div></div><div><div class="k">Embedding model · right stage first</div><div class="v" id="ev">–</div></div></div>
+        <button class="run" id="run">Run the test</button><span id="evst"></span>
+        <div class="tbl" id="evout"></div>
+      </div>
+    </details>
+  </section>
+
+  <div class="grp">Path</div>
+  <section class="st path" id="edu">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b>01</b> source <span class="when">2022 – 2026</span></div>
+    <h2>B.Tech, Artificial Intelligence &amp; Machine Learning</h2>
+    <p>Jain (Deemed-to-be University), Bengaluru. CGPA 8.47 / 10. Before that, pre-university science at Justice Shivaraj Patil PU College (91.6%).</p>
+  </section>
+
+  <section class="st path" id="futurense">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b>02</b> stage <span class="when">Apr – Jun 2024</span></div>
+    <h2>Data Analyst Intern, Futurense Technologies</h2>
+    <p>Led four interns and delivered an end-to-end machine learning solution for a healthcare use case, presented to internal stakeholders.</p>
+  </section>
+
+  <section class="st path" id="sixphrase">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b>03</b> stage <span class="when">Feb – Apr 2025</span></div>
+    <h2>ML Intern, Six Phrase</h2>
+    <p>Led six interns on a smart-city management project and built its machine learning pipelines in Python, with weekly reporting to the project lead.</p>
+  </section>
+
+  <section class="st now" id="symphony">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b>04</b> current stage <span class="when">Jan 2026 – present</span> <span class="badge"></span></div>
+    <div class="nowbox">
+      <div class="nowhd"><h2>AI Developer Engineer, SymphonyAI</h2><span class="live mono"><i></i>now</span></div>
+      <ol class="roles mono"><li><b>Jul 2026 – present</b> AI Developer Engineer, full-time</li><li><b>Jan – Jun 2026</b> AI Developer Intern, converted to full-time</li></ol>
+      <p>I work on SymphonyAI's enterprise ITSM conversational agent, an assistant that IT service teams rely on every day. My work is building the agentic side of it: designing conversational flows, working on the retrieval pipelines that ground its answers, and shaping how the agent decides what to do next.</p>
+      <div class="facts"><span>agentic AI</span><span>LLM applications</span><span>retrieval pipelines</span><span>conversational design</span><span>enterprise ITSM</span></div>
+      <p class="nda">The product is internal, so there is no diagram here. I am happy to walk through the architecture and trade-offs in general terms.</p>
+    </div>
+  </section>
+
+  <div class="grp">Systems</div>
+  <div id="sysout"></div>
+
+  <div id="demo-holder" hidden>
+      <div class="demo" id="demo">
+        <div>
+          <h4>EfficientNetB3 classifier from this project · runs in your browser</h4>
+          <div class="leaves" id="leaves"><button type="button" data-leaf="leaf_30.jpg" title="sample leaf"><img src="img/leaves/leaf_30.jpg" alt=""></button><button type="button" data-leaf="leaf_37.jpg" title="sample leaf"><img src="img/leaves/leaf_37.jpg" alt=""></button><button type="button" data-leaf="leaf_20.jpg" title="sample leaf"><img src="img/leaves/leaf_20.jpg" alt=""></button><button type="button" data-leaf="leaf_01.jpg" title="sample leaf"><img src="img/leaves/leaf_01.jpg" alt=""></button><button type="button" data-leaf="leaf_12.jpg" title="sample leaf"><img src="img/leaves/leaf_12.jpg" alt=""></button><button type="button" data-leaf="leaf_08.jpg" title="sample leaf"><img src="img/leaves/leaf_08.jpg" alt=""></button><button type="button" data-leaf="leaf_18.jpg" title="sample leaf"><img src="img/leaves/leaf_18.jpg" alt=""></button><button type="button" data-leaf="leaf_26.jpg" title="sample leaf"><img src="img/leaves/leaf_26.jpg" alt=""></button><button type="button" data-leaf="leaf_16.jpg" title="sample leaf"><img src="img/leaves/leaf_16.jpg" alt=""></button><button type="button" data-leaf="leaf_05.jpg" title="sample leaf"><img src="img/leaves/leaf_05.jpg" alt=""></button><button type="button" data-leaf="leaf_25.jpg" title="sample leaf"><img src="img/leaves/leaf_25.jpg" alt=""></button><button type="button" data-leaf="leaf_15.jpg" title="sample leaf"><img src="img/leaves/leaf_15.jpg" alt=""></button></div>
+          <div class="up"><label for="upl">Upload a leaf photo</label><input type="file" id="upl" accept="image/*"><span>or pick a held-out test leaf above</span></div>
+          <p class="dnote">EfficientNetB3, 38 PlantVillage classes, 22 MB, downloaded once when you first use it. It learned from lab photos on plain backgrounds, so photos from a field will be less reliable.</p>
+        </div>
+        <div>
+          <h4>Same leaf, both models</h4>
+          <div class="res"><canvas id="pcv" width="224" height="224" aria-label="The image the model sees"></canvas>
+            <div><div class="pstat" id="pst">pick a leaf to load the model</div><div class="truth" id="truth"></div></div></div>
+          <div class="cmp">
+            <div class="before"><h5><i></i>Saved model · before</h5><div class="bars" id="bars0"></div><div class="verdict" id="v0"></div><div class="bnote" id="n0"></div></div>
+            <div class="after"><h5><i></i>Repaired · after</h5><div class="bars" id="bars"></div><div class="verdict" id="v1"></div></div>
+          </div>
+        </div>
+      </div>
+      <div id="fit">
+        <div class="room">
+          <div class="pick"><h5>Person</h5><div class="row" id="tp"><button type="button" data-p="05309" title="person"><img src="img/tryon/p_05309.jpg" alt=""></button><button type="button" data-p="05647" title="person"><img src="img/tryon/p_05647.jpg" alt=""></button><button type="button" data-p="06914" title="person"><img src="img/tryon/p_06914.jpg" alt=""></button><button type="button" data-p="07675" title="person"><img src="img/tryon/p_07675.jpg" alt=""></button><button type="button" data-p="12903" title="person"><img src="img/tryon/p_12903.jpg" alt=""></button></div><h5>Garment</h5><div class="row" id="tc"><button type="button" data-c="05230" title="garment"><img src="img/tryon/c_05230.jpg" alt=""></button><button type="button" data-c="00654" title="garment"><img src="img/tryon/c_00654.jpg" alt=""></button><button type="button" data-c="07593" title="garment"><img src="img/tryon/c_07593.jpg" alt=""></button><button type="button" data-c="09199" title="garment"><img src="img/tryon/c_09199.jpg" alt=""></button><button type="button" data-c="00714" title="garment"><img src="img/tryon/c_00714.jpg" alt=""></button><button type="button" data-c="05922" title="garment"><img src="img/tryon/c_05922.jpg" alt=""></button><button type="button" data-c="04071" title="garment"><img src="img/tryon/c_04071.jpg" alt=""></button></div>
+            <p class="dnote">Drag across the image to compare. Rendered by the models on held-out VITON-HD test photos; a fully live version needs a 270 MB human-parsing model per photo and a GPU.</p></div>
+          <div class="ba" id="ba">
+            <img id="tro" alt="Original pipeline result" width="384" height="512"><img id="trn" class="after" alt="Repaired pipeline result" width="384" height="512">
+            <div class="handle" id="bah"><span></span></div>
+            <span class="side l">original</span><span class="side r">repaired</span>
+            <input type="range" id="bar" min="0" max="100" value="50" aria-label="Compare original and repaired try-on">
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <section class="st side" id="also">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b class="num"></b> side branch · also worked on</div>
+    <h2>Smaller and earlier work</h2>
+    <ul>
+      <li><b>Experiments</b> <span>· sign-language-to-speech, OCR document extraction, a voice feedback agent, YOLO ball tracking for cricket reviews.</span></li>
+      <li><b>Full-stack apps</b> <span>· <a href="https://invoice-app-lake-three.vercel.app" target="_blank" rel="noopener">invoicing</a> (live), <a href="https://github.com/namanabbad02/Track-Business" target="_blank" rel="noopener">inventory and accounts</a>, a <a href="https://github.com/namanabbad02/ERP-like-Student-Enrollment-System" target="_blank" rel="noopener">student ERP</a>, a <a href="https://github.com/namanabbad02/JobsFeed" target="_blank" rel="noopener">React Native job feed</a>.</span></li>
+      <li><b>Data and testing</b> <span>· an <a href="https://github.com/namanabbad02/data-pipeline-project" target="_blank" rel="noopener">ETL pipeline with validation</a>, a <a href="https://github.com/namanabbad02/e-commerce-automation" target="_blank" rel="noopener">Selenium test framework</a>.</span></li>
+    </ul>
+  </section>
+
+  <section class="st sink" id="contact">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b class="num"></b> sink</div>
+    <p class="big">The packet ends here. <a href="mailto:abbadnaman@gmail.com">Send me one.</a></p>
+    <a class="cbtn pri" href="mailto:abbadnaman@gmail.com">abbadnaman@gmail.com</a><button class="cbtn" id="copy">Copy email</button><a class="cbtn" href="https://www.linkedin.com/in/naman-n-jain/" target="_blank" rel="noopener">LinkedIn</a><a class="cbtn" href="https://github.com/namanabbad02" target="_blank" rel="noopener">GitHub</a>
+    <p class="plain" style="margin-top:18px;color:var(--mute)">Focus: agentic AI, LLM applications, retrieval, fine-tuning and MLOps. Works with Python, FastAPI, PyTorch, TensorFlow, XGBoost, Kafka, RabbitMQ, Redis, MLflow, Elasticsearch, Weaviate, Neo4j, PostgreSQL, Docker, React and TypeScript.<br><br>Certificates: Natural Language Processing with Attention Models and Introduction to TensorFlow (DeepLearning.AI) · Reinforcement Learning System (Alberta Machine Intelligence Institute) · DevOps on AWS (Amazon Web Services) · SQL (Intermediate) and Frontend Developer, React (HackerRank) · Data Analytics and Visualization (Accenture, Forage).</p>
+  </section>
+</div>
+
+<footer>Naman Jain, Bengaluru. The router model runs on your device.</footer>
+</main>
+
+<script type="module">
+/* ============================ content ============================ */
+const GH = "https://github.com/namanabbad02/";
+const SYSTEMS = [
+  { id: "tryon", demo: "tryon", demoLabel: "Fitting room", repairHtml: "<div class=\"rp\"><h4>What the weights showed</h4><p>Reading the trained weights directly, with no retraining, turned up three faults. The warping network gave the person's own photo exactly the same first-layer weight as the new garment (0.548 vs 0.546): paired training had taught it to copy the shirt the person already wears. The generator squashed its output about 2.5\u00d7 before its final tanh, which is the grey haze in the report. And because the data loader never found the pose files, both models trained with all-zero pose maps.</p><h4>What I changed</h4><ol class=\"changes\"><li>Warping network: first-layer weights from the person photo set to zero, closing the copy-the-old-shirt shortcut <em>weight edit</em></li><li>Generator: last layer rescaled per colour channel, removing the grey haze <em>weight edit</em></li><li>The generator sees the person with the old garment blanked out, and the warped garment is placed over that area <em>pipeline fix</em></li></ol><h4>Results on held-out VITON-HD test data</h4><table class=\"mini\"><thead><tr><th>512 px</th><th>shows the new garment's colour</th><th>whole-image L1</th><th>PSNR</th><th>SSIM</th></tr></thead><tbody><tr><td>original</td><td>29%</td><td>0.328</td><td>15.2 dB</td><td>0.863</td></tr><tr><td>repaired</td><td><b>83%</b></td><td><b>0.085</b></td><td><b>21.0 dB</b></td><td><b>0.889</b></td></tr></tbody></table><p class=\"dnote\">Colour test: 100 unpaired person-garment combinations. L1, PSNR and SSIM: 120 paired test images, where the person already wears the target garment. On those pairs the original scores better inside the garment area (L1 0.19 vs 0.32), because copying the old shirt is the right answer there; that is the shortcut that breaks real try-on. Settings were chosen on training data only. Still unsolved: sleeves keep their original colour and large prints distort.</p></div>", name: "Virtual try-on", one: "Renders a person wearing a garment they never put on: two generative models, trained from scratch at 512 × 512.",
+    stack: "PyTorch · SPADE U-Net · ResUNet GAN · VGG perceptual loss · VITON-HD · NVIDIA L4",
+    facts: ["2 models trained from scratch", "34+ GPU hours", "512 × 512", "repaired: new garment shown 29% → 83%"],
+    nodes: [["per", 0, 0, "Person", "pose + parsing"], ["gar", 0, 1, "Garment", "flat product photo"], ["warp", 1, 0, "Warping network", "SPADE U-Net, 5 ep"],
+            ["comp", 2, 0, "Coarse composite", "on masked person"], ["gen", 3, 0, "Generator", "ResUNet + GAN"], ["loss", 3, 1, "Training losses", "L1 VGG GAN masked"], ["out", 4, 0, "Try-on image", "512 × 512"]],
+    edges: [["per", "warp"], ["gar", "warp"], ["warp", "comp"], ["comp", "gen"], ["loss", "gen", 2], ["gen", "out"]],
+    problem: "Online shoppers cannot see how a garment will sit on their own body, so they guess, and they return what does not fit.",
+    decision: "The official GP-VTON checkpoints did not match the architecture, so we trained both stages ourselves: prototyped at 128 px on a T4, then moved to an L4 for 512 px. When the generator learned to ignore the new shirt and simply inpaint a torso (a lazy generator, a form of mode collapse), I added a heavily weighted masked L1 loss on the garment region, a GAN discriminator and feathered masks.",
+    honest: "The output is recognisable but not photorealistic enough for customers: lighting and edges can look pasted on. We paused it; closing the gap likely needs diffusion models and five to ten times the compute.",
+    runs: [
+      ["Pretrained", "Official GP-VTON weights loaded into our pipeline. The keys did not match the architecture and the output was noise, so we decided to train our own models."],
+      ["Gen · 5 ep", "Our first generator after 5 epochs. The garment comes through, but its edges are hard and the lighting is flat."],
+      ["Gen · 20 ep", "Twenty epochs. Shape and placement are right; colour is over-saturated and still reads as pasted on."],
+      ["+ GAN · 2 ep", "Adding a discriminator. The most natural result: the print and texture survive and the edges blend."],
+      ["New arch · 1 ep", "A changed architecture to stop the generator returning the masked person. Early epochs ghost the background: the photorealism gap the report ends on."],
+    ] },
+  { id: "onebox", name: "Onebox", one: "An email inbox that reads, sorts and drafts replies with a local language model.",
+    stack: "TypeScript · RabbitMQ · Ollama (phi3) · Elasticsearch · Weaviate · PostgreSQL · Docker",
+    facts: ["6 services on a queue", "local LLM, no data leaves", "5 validated labels", "RAG replies"],
+    nodes: [["imap", 0, 1, "IMAP sync", "mail accounts"], ["mq", 1, 1, "RabbitMQ", "email queue"], ["llm", 2, 1, "LLM classifier", "phi3 · temperature 0"],
+            ["es", 3, 0, "Elasticsearch", "search index"], ["nt", 3, 1, "Slack + webhook", "interested leads"], ["rag", 3, 2, "RAG reply", "Weaviate + phi3"], ["ui", 4, 1, "Inbox UI", "React"]],
+    edges: [["imap", "mq"], ["mq", "llm"], ["llm", "es"], ["llm", "nt"], ["llm", "rag"], ["es", "ui"], ["rag", "ui"]],
+    problem: "A sales inbox fills with replies that all need the same triage: who is interested, who has booked, what is spam.",
+    decision: "Six small services joined by a queue, so a slow model never blocks mail sync. The model runs locally through Ollama, so no email leaves the machine, and its answer is checked against the five allowed labels before it is trusted.",
+    honest: "I have not yet measured the classifier against a labelled set of emails. That evaluation is the next thing to build." },
+  { id: "fraud", name: "Real-time fraud detection", one: "Scores every card payment as it streams past, and says why.",
+    stack: "Kafka · Redis · XGBoost · SHAP · MLflow · FastAPI · Streamlit · Docker",
+    facts: ["scores every payment in-stream", "SHAP reason per score", "MLflow model registry", "feedback loop"],
+    nodes: [["sim", 0, 0, "Transactions", "simulated stream"], ["k1", 1, 0, "Kafka", "transactions topic"], ["fs", 2, 0, "Feature service", "Redis feature store"],
+            ["ms", 3, 0, "Model server", "XGBoost + SHAP"], ["db", 4, 0, "Live dashboard", "Streamlit"], ["ml", 3, 1, "MLflow registry", "versioned models"], ["fb", 4, 1, "Feedback log", "analyst labels"]],
+    edges: [["sim", "k1"], ["k1", "fs"], ["fs", "ms"], ["ms", "db"], ["ml", "ms"], ["db", "fb"], ["fb", "ml", 1]],
+    problem: "Fraud has to be caught while the payment is happening, using what that customer normally does.",
+    decision: "Per-user history lives in a Redis feature store, so features like time since the last payment are computed inside the stream. Every score ships with SHAP values, and the served model comes from an MLflow registry, not a file on disk.",
+    honest: "It is trained on simulated transactions. It proves the pipeline works end to end, not how well it would catch real fraud." },
+  { id: "cricket", name: "Cricket outcome predictor", one: "Win probability ball by ball, plus answers to what-if questions.",
+    stack: "XGBoost · DoWhy · EconML · FastAPI · WebSocket · Pydantic · Streamlit",
+    facts: ["~40 features per ball", "causal what-if answers", "live over WebSocket"],
+    nodes: [["cs", 0, 0, "Cricsheet data", "ball-by-ball history"], ["val", 1, 0, "Validation", "Pydantic schemas"], ["fe", 2, 0, "Features", "~40 per ball"],
+            ["xgb", 3, 0, "XGBoost", "win probability"], ["ca", 3, 1, "Causal engine", "DoWhy + EconML"], ["api", 4, 0, "FastAPI", "REST + WebSocket"], ["dash", 4, 1, "Dashboard", "live curve"]],
+    edges: [["cs", "val"], ["val", "fe"], ["fe", "xgb"], ["fe", "ca"], ["xgb", "api"], ["ca", "api"], ["api", "dash"]],
+    problem: "Win-probability models say what will happen. A captain wants to know what would change it.",
+    decision: "Next to the predictive model sits a causal engine that estimates counterfactuals, such as how the odds move if a different batter were at the crease, instead of reading meaning into correlations.",
+    honest: "Causal answers are only as good as the causal graph I assumed. They are estimates, and the dashboard presents them as such." },
+  { id: "monotars", demo: "plant", demoLabel: "Diagnose a leaf", repairHtml: "<div class=\"rp\"><h4>What the weights showed</h4><p>Alongside the CNN + ViT model, this project has an EfficientNetB3 classifier. Its saved weights were broken: 250 of the 256 hidden units never fired, and the output bias had simply learned the class frequencies (correlation 0.9997), so it answered \"orange greening\" for almost every leaf. A strong L1 activity regularizer had zeroed the layer early in training, and after that the backbone drifted 9 to 38% away from its ImageNet weights with nothing guiding it.</p><h4>What I changed, without retraining</h4><ol class=\"changes\"><li>Backbone moved halfway back toward its ImageNet weights (weight-space interpolation, chosen on training images) <em>weight edit</em></li><li>Head BatchNorm recalibrated to the features it actually receives <em>weight edit</em></li><li>The two dead layers rewritten in closed form from training-image statistics (linear discriminant analysis) <em>weight edit</em></li></ol><h4>Results on the held-out test folder</h4><table class=\"mini\"><thead><tr><th>10,876 test images, 38 classes</th><th>accuracy</th><th>balanced accuracy</th></tr></thead><tbody><tr><td>saved model</td><td>2.0%*</td><td>2.0%</td></tr><tr><td>repaired</td><td><b>90.6%</b></td><td><b>90.1%</b></td></tr></tbody></table><p class=\"dnote\">* On a class-balanced sample; it predicts one class for everything, so plain accuracy on the full folder equals that class's 10% share. Weakest classes after repair: tomato late and early blight. The live demo runs the repaired model in your browser and shows the saved model's answer beside it.</p></div>", name: "MONOTARS", one: "Photograph a leaf, get the disease and what to do about it.", code: GH + "plant-docai",
+    stack: "TensorFlow · Vision Transformer · TensorFlow.js · FastAPI · React",
+    facts: ["98.5% test accuracy (CNN + ViT)", "38 classes", "runs on the phone", "repaired B3 model: 2% → 90.6%"],
+    nodes: [["ph", 0, 0, "Leaf photo", "from a phone"], ["cnn", 1, 0, "CNN + ViT", "38 classes"], ["tfjs", 2, 0, "TensorFlow.js", "runs in the browser"], ["dx", 3, 0, "Diagnosis", "class + confidence"], ["bot", 4, 0, "Chatbot", "English · Hindi · Kannada"]],
+    edges: [["ph", "cnn"], ["cnn", "tfjs"], ["tfjs", "dx"], ["dx", "bot"]],
+    problem: "Crop disease is usually spotted by eye, and often too late for a farmer to act on it.",
+    decision: "A CNN combined with a Vision Transformer, converted to TensorFlow.js so prediction happens on the device, with no server round trip on a weak rural connection. 98.5% test accuracy in the training notebook.",
+    honest: "That accuracy is on clean dataset images, not photos taken in a field. Federated learning and sensor input are designed but not built." },
+  { id: "paths", name: "AI Learning Path Generator", one: "A study plan built around what you got wrong.", code: GH + "ai-learning-path-gen",
+    stack: "FastAPI · Neo4j · PostgreSQL · Express · React · Docker",
+    facts: ["prerequisites as a graph", "plan from your weak topics"],
+    nodes: [["quiz", 0, 0, "Role + quiz", "React"], ["api", 1, 0, "Express API", "auth, scoring"], ["eng", 2, 0, "Path engine", "FastAPI"], ["g", 3, 0, "Knowledge graph", "Neo4j prerequisites"], ["pg", 2, 1, "PostgreSQL", "history, weak topics"], ["out", 4, 0, "Learning path", "ordered topics"]],
+    edges: [["quiz", "api"], ["api", "eng"], ["eng", "g"], ["g", "out"], ["api", "pg"], ["pg", "eng"]],
+    problem: "Generic roadmaps ignore what a learner already knows.",
+    decision: "Skills and their prerequisites live in a graph database, because \"what should I learn before this?\" is a graph question. Assessment history stays in PostgreSQL, and a separate FastAPI service builds the path.",
+    honest: "The graph and question bank are seeded by hand from a small dataset, so coverage is limited to the roles I entered." },
+];
+const NAME = { edu: "Education", futurense: "Futurense internship", sixphrase: "Six Phrase internship", symphony: "SymphonyAI", contact: "Contact" };
+SYSTEMS.forEach(s => (NAME[s.id] = s.name));
+
+/* Sentences the router searches: [stage id, text] */
+const RAW = [
+  ["edu", "Naman studied for a B.Tech in Computer Science Engineering, specialising in AI and machine learning, at Jain University in Bengaluru from 2022 to 2026."],
+  ["edu", "His coursework covered machine learning, advanced ML, natural language processing, databases and operating systems, with a CGPA of 8.47."],
+  ["symphony", "Naman works at SymphonyAI as an AI Developer Engineer. He joined as an intern in January 2026 and was converted to full-time in July 2026."],
+  ["symphony", "At SymphonyAI he builds agentic AI for an enterprise ITSM conversational agent: designing conversational flows and working on retrieval pipelines for a product IT teams use every day."],
+  ["symphony", "His current focus is agentic AI, large language model applications and enterprise conversational AI, including AI agents and chatbots."],
+  ["futurense", "As a data analyst intern at Futurense Technologies in 2024, Naman led four interns and delivered a healthcare machine learning solution."],
+  ["sixphrase", "As an ML intern at Six Phrase in 2025, Naman led a team of six interns on a smart-city project and built its ML pipelines in Python."],
+  ["contact", "To contact Naman, email him at abbadnaman@gmail.com or message him on LinkedIn or GitHub. He is based in Bengaluru, India."],
+  ["tryon", "Virtual try-on renders a photo of a person wearing a garment they never put on, using a two-stage generative pipeline at 512 by 512 resolution."],
+  ["tryon", "A SPADE-based warping network, trained from scratch, deforms a flat garment image to fit the person's pose and body segmentation."],
+  ["tryon", "A ResUNet generator trained as a GAN with L1, VGG perceptual and adversarial losses renders the final image; a masked L1 loss fixed mode collapse where the generator ignored the new shirt."],
+  ["tryon", "The two models took more than 34 GPU hours to train on an NVIDIA L4 after the 512 pixel model ran out of memory on a T4. The output is recognisable but not yet photorealistic."],
+  ["onebox", "Onebox is an AI email inbox. It syncs IMAP mail accounts and pushes every new email onto a RabbitMQ queue for processing."],
+  ["onebox", "A local large language model, phi3 running on Ollama, classifies each email as Interested, Not Interested, Meeting Booked, Spam or Out of Office."],
+  ["onebox", "Emails are indexed in Elasticsearch so the inbox is searchable, and interested leads trigger Slack and webhook notifications."],
+  ["onebox", "A retrieval-augmented generation service embeds the email, retrieves context from a Weaviate vector database and drafts a suggested reply to the lead."],
+  ["fraud", "Real-time fraud detection: card transactions stream through Kafka and each payment is scored for risk as it arrives."],
+  ["fraud", "A feature service keeps each user's history in a Redis feature store to compute time since the last transaction and deviation from usual spending."],
+  ["fraud", "An XGBoost model served with FastAPI returns a risk score together with SHAP values that explain why a transaction was flagged."],
+  ["fraud", "Models are tracked and versioned in an MLflow registry, analyst feedback is logged for retraining, and a Streamlit dashboard shows live alerts."],
+  ["cricket", "The cricket outcome predictor estimates which team will win a T20 match, updating the win probability ball by ball with XGBoost."],
+  ["cricket", "A causal inference engine built with DoWhy and EconML answers what-if questions, such as how the odds change if a different batter were playing."],
+  ["cricket", "It builds about 40 match-state features from Cricsheet ball-by-ball data, validated with Pydantic schemas."],
+  ["cricket", "Live predictions are served over FastAPI and WebSocket to a dashboard that draws the win probability curve as the match unfolds."],
+  ["monotars", "MONOTARS diagnoses plant disease from a photo of a leaf, so farmers can catch crop problems early instead of judging by eye."],
+  ["monotars", "The image classifier is a hybrid of a convolutional neural network and a Vision Transformer over 38 classes, reaching 98.5% test accuracy."],
+  ["monotars", "The trained model is converted to TensorFlow.js so prediction runs inside the browser with no server, built for weak connectivity and edge devices."],
+  ["monotars", "A multilingual chatbot explains the diagnosis and recommends treatment in English, Hindi and Kannada."],
+  ["paths", "The AI Learning Path Generator builds a personalised study plan for a career role. A quiz finds your weak topics and the plan focuses on them."],
+  ["paths", "Skills and their prerequisites are stored in a Neo4j knowledge graph, queried by a FastAPI service that assembles the learning path."],
+  ["paths", "An Express API handles login and quizzes, PostgreSQL stores assessment history, and Docker Compose runs the databases."],
+  ["monotars", "Naman repaired the project's EfficientNetB3 classifier by editing its weights directly (weight-space programming): it had a dead hidden layer, and accuracy went from 2% to 90.6% on 10,876 held-out images without retraining."],
+  ["monotars", "You can try the plant disease model live in your browser by uploading a leaf photo, and compare it with the broken original."],
+  ["tryon", "Naman repaired the try-on models by reading and editing their weights: he closed a shortcut where the warping network copied the old shirt, and removed a grey haze from the generator."],
+  ["tryon", "A virtual try-on fitting room compares the original and repaired pipelines: the repaired one shows the new garment's colour 83% of the time instead of 29%."],
+];
+const EVALS = [
+  ["try clothes on virtually", "tryon"], ["generative adversarial networks", "tryon"], ["training a deep learning model from scratch on GPUs", "tryon"], ["mode collapse", "tryon"],
+  ["help farmers spot sick crops", "monotars"], ["image classification accuracy", "monotars"], ["a model that runs in the browser without a backend", "monotars"], ["anything in Indian languages", "monotars"],
+  ["automatically sort incoming emails", "onebox"], ["has he used a vector database", "onebox"], ["running an LLM locally instead of calling an API", "onebox"], ["suggest a reply to a sales lead", "onebox"],
+  ["catch suspicious card payments", "fraud"], ["explain why the model flagged something", "fraud"], ["streaming data", "fraud"], ["experiment tracking and model registry", "fraud"],
+  ["who will win the match", "cricket"], ["causal inference", "cricket"], ["counterfactual analysis", "cricket"], ["live updates over websockets", "cricket"],
+  ["graph database experience", "paths"], ["tell me what to study next", "paths"], ["personalised learning", "paths"],
+  ["where did he study", "edu"], ["how do I contact him", "contact"], ["has he led a team", "sixphrase"], ["healthcare experience", "futurense"],
+  ["fixing a broken model without retraining", "monotars"], ["try clothes on in a fitting room", "tryon"],
+  ["where does he work now", "symphony"], ["experience building AI agents", "symphony"], ["enterprise chatbot", "symphony"],
+];
+const SUGGEST = ["where does he work now", "AI agents", "generative models", "anything real-time", "causal inference"];
+const EMAIL = "abbadnaman@gmail.com";
+
+/* ============================ helpers ============================ */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const CH = RAW.map(([p, text], i) => ({ i, p, text }));
+
+/* ============================ keyword baseline (BM25) ============================ */
+const STOP = new Set("a an the is are was be to of in on for and or with by at as it its he his him i me my you your do does did has have had how what which where who can so that this from into not no yet out now something anything any tell much will would there their them".split(" "));
+const tok = s => s.toLowerCase().replace(/[^a-z0-9+#]+/g, " ").split(" ").filter(w => w && !STOP.has(w));
+const docs = CH.map(c => tok(c.text)), avgLen = docs.reduce((a, d) => a + d.length, 0) / docs.length, df = {};
+docs.forEach(d => new Set(d).forEach(w => (df[w] = (df[w] || 0) + 1)));
+function bm25(query) {
+  const q = tok(query);
+  return CH.map((c, i) => { let s = 0;
+    for (const w of q) { const f = docs[i].filter(x => x === w).length; if (!f) continue;
+      s += Math.log(1 + (docs.length - df[w] + 0.5) / (df[w] + 0.5)) * (f * 2.5) / (f + 1.5 * (0.25 + 0.75 * docs[i].length / avgLen)); }
+    return { c, s }; }).sort((a, b) => b.s - a.s);
+}
+
+/* ============================ embedding model ============================ */
+let extractor = null, vecs = null, loading = null;
+const dot = (a, b) => { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; };
+const embed = async t => (await extractor(t, { pooling: "mean", normalize: true })).tolist();
+const status = (cls, t) => { $("led").className = "led " + cls; $("st").textContent = t; };
+function loadModel() {
+  if (loading) return loading;
+  $("load").hidden = true;
+  loading = (async () => {
+    try {
+      status("busy", "loading model…");
+      const { pipeline } = await import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1");
+      extractor = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2", { dtype: "q8",
+        progress_callback: p => { if (p.status === "progress" && /onnx/.test(p.file || "")) status("busy", `downloading model · ${Math.round(p.progress)}%`); } });
+      status("busy", `embedding ${CH.length} sentences…`);
+      vecs = await embed(CH.map(c => c.text));
+      status("live", "routing by meaning · all-MiniLM-L6-v2 on your device");
+      route();
+      return true;
+    } catch (e) { console.error(e); extractor = null; status("", "model unavailable · keyword routing only"); return false; }
+  })();
+  return loading;
+}
+async function rank(q) {
+  if (!vecs) return bm25(q);
+  const [qv] = await embed([q]);
+  return CH.map((c, i) => ({ c, s: dot(qv, vecs[i]) })).sort((a, b) => b.s - a.s);
+}
+
+/* ============================ systems ============================ */
+function diagram(s, v) {
+  const NW = v ? 142 : 152, NH = 52, GX = v ? 14 : 40, GY = v ? 34 : 16, at = {}; let cols = 0, rows = 0;
+  s.nodes.forEach(([id, c, r]) => { at[id] = v ? { x: r * (NW + GX), y: c * (NH + GY), c } : { x: c * (NW + GX), y: r * (NH + GY), c }; cols = Math.max(cols, c + 1); rows = Math.max(rows, r + 1); });
+  const main = cols * (v ? NH : NW) + (cols - 1) * (v ? GY : GX), cross = rows * (v ? NW : NH) + (rows - 1) * (v ? GX : GY), lp = s.edges.some(e => e[2] === 1) ? 30 : 0;
+  const w = v ? cross + lp : main, h = v ? main : cross + lp, cx = p => p.x + NW / 2, cy = p => p.y + NH / 2;
+  const paths = s.edges.map(([a, b, loop], k) => { const A = at[a], B = at[b], id = `${s.id}${v ? "v" : "h"}${k}`; let d;
+    if (loop === 2) { const up = B.y < A.y; d = v ? `M${A.x + (B.x < A.x ? 0 : NW)},${cy(A)} L${B.x + (B.x < A.x ? NW : 0)},${cy(B)}` : `M${cx(A)},${up ? A.y : A.y + NH} L${cx(B)},${up ? B.y + NH : B.y}`; }
+    else if (loop && !v) { const y = Math.max(A.y, B.y) + NH + 24; d = `M${cx(A)},${A.y + NH} C${cx(A)},${y} ${cx(B)},${y} ${cx(B)},${B.y + NH}`; }
+    else if (loop) { const x = Math.max(A.x, B.x) + NW + 24; d = `M${A.x + NW},${cy(A)} C${x},${cy(A)} ${x},${cy(B)} ${B.x + NW},${cy(B)}`; }
+    else if (B.c !== A.c && !v) { const x1 = A.x + NW, x2 = B.x, m = (x2 - x1) / 2; d = `M${x1},${cy(A)} C${x1 + m},${cy(A)} ${x2 - m},${cy(B)} ${x2},${cy(B)}`; }
+    else if (B.c !== A.c) { const y1 = A.y + NH, y2 = B.y, m = (y2 - y1) / 2; d = `M${cx(A)},${y1} C${cx(A)},${y1 + m} ${cx(B)},${y2 - m} ${cx(B)},${y2}`; }
+    else if (!v) { const up = B.y < A.y; d = `M${cx(A)},${up ? A.y : A.y + NH} L${cx(B)},${up ? B.y + NH : B.y}`; }
+    else { const l = B.x < A.x; d = `M${l ? A.x : A.x + NW},${cy(A)} L${l ? B.x + NW : B.x},${cy(B)}`; }
+    return `<path id="${id}" class="edge${loop ? " loop" : ""}" d="${d}"/><circle class="pk" r="3.6"><animateMotion dur="${loop ? 3.4 : 2.2}s" begin="-${(k * 0.45) % 2.2}s" repeatCount="indefinite"><mpath href="#${id}"/></animateMotion></circle>`; }).join("");
+  const nodes = s.nodes.map(([id, , , label, sub]) => { const p = at[id];
+    return `<g class="node"><rect x="${p.x}" y="${p.y}" width="${NW}" height="${NH}"/><text x="${p.x + 12}" y="${p.y + (sub ? 22 : 31)}">${esc(label)}</text>${sub ? `<text class="s" x="${p.x + 12}" y="${p.y + 39}">${esc(sub)}</text>` : ""}</g>`; }).join("");
+  return `<svg class="${v ? "v" : "h"}" viewBox="-2 -2 ${w + 4} ${h + 4}" style="max-width:${Math.round(w * (v ? 1.15 : 1.05))}px" role="img" aria-label="How ${esc(s.name)} is wired">${paths}${nodes}</svg>`;
+}
+$("sysout").innerHTML = SYSTEMS.map((s, k) => `
+  <section class="st svc sys" id="${s.id}">
+    <div class="mk"></div>
+    <div class="tag mono"><span class="led"></span><b class="num"></b> service · system ${k + 1} of ${SYSTEMS.length} <span class="badge"></span></div>
+    <div class="card">
+      <div class="hd"><h2>${esc(s.name)}</h2><div class="lk">${s.code ? `<a href="${s.code}" target="_blank" rel="noopener">view code ↗</a>` : ""}${s.demo ? `<button type="button" class="golive" data-go="demo">▶ Live demo</button>` : ""}</div></div>
+      <div class="one">${esc(s.one)}</div>
+      ${s.facts ? `<div class="facts">${s.facts.map(f => `<span>${esc(f)}</span>`).join("")}</div>` : ""}
+      ${s.demo ? `<div class="tabs" role="tablist"><button role="tab" data-tab="ov" aria-selected="true">Overview</button><button role="tab" data-tab="demo" aria-selected="false"><span class="dot"></span>Live demo<span class="long"> · ${esc(s.demoLabel)}</span></button><button role="tab" data-tab="fix" aria-selected="false"><span class="long">How I repaired it</span><span class="short">Repair</span></button></div>` : ""}
+      <div class="panel" data-panel="ov">
+      <div class="dia">${diagram(s)}${diagram(s, true)}</div>
+      ${s.runs ? `<details class="log" id="log"><summary>
+          <span class="lt"><b>Training log</b><span>${s.runs.length} runs, from noise to the photorealism gap</span></span>
+          <span class="thumbs">${s.runs.map((r, j) => `<button type="button" class="th" data-run="${j}" title="${esc(r[0])}"><i style="background-image:url(img/tryon-run${j + 1}.jpg)"></i><em>${esc(r[0])}</em></button>`).join("")}</span>
+          <span class="tog"></span></summary>
+        <div class="logbody"><div class="strip"><img id="runimg" src="img/tryon-run4.jpg" width="1380" height="268" alt="" loading="lazy"></div>
+        <div class="cols"><span>person</span><span>target garment</span><span>warped garment</span><span>masked person</span><span>output</span></div>
+        <p class="rnote" id="runnote"></p><p class="mono" style="color:var(--faint);margin:8px 0 0">Results from the project report, held-out VITON-HD pairs.</p></div></details>` : ""}
+      <div class="three"><div><h4>Problem</h4>${esc(s.problem)}</div><div><h4>Key decision</h4>${esc(s.decision)}</div><div class="lim"><h4>Limitation</h4>${esc(s.honest)}</div></div>
+      </div>
+      ${s.demo ? `<div class="panel" data-panel="demo" data-slot="${s.demo}" hidden></div><div class="panel pad" data-panel="fix" hidden>${s.repairHtml}</div>` : ""}
+      <div class="stack mono">${esc(s.stack)}</div>
+    </div>
+  </section>`).join("");
+document.querySelectorAll("[data-slot]").forEach(slot => slot.append($(slot.dataset.slot === "plant" ? "demo" : "fit")));
+$("demo-holder").remove();
+function showTab(card, tab) {
+  card.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === tab));
+  card.querySelectorAll("[data-panel]").forEach(p => (p.hidden = p.dataset.panel !== tab));
+  card.closest("section").querySelectorAll("svg").forEach(g => g.unpauseAnimations && (tab === "ov" ? g.unpauseAnimations() : g.pauseAnimations()));
+  if (typeof follow === "function") follow();
+}
+$("sysout").addEventListener("click", e => {
+  const t = e.target.closest("[data-tab]"), g = e.target.closest("[data-go]"); if (!t && !g) return;
+  const card = e.target.closest(".card"); showTab(card, t ? t.dataset.tab : g.dataset.go);
+  if (g) card.querySelector(".tabs").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+/* numbering, jump links, try-on runs */
+document.querySelectorAll(".st").forEach((st, k) => { const b = st.querySelector(".num") || st.querySelector(".tag b"); if (b) b.textContent = String(k).padStart(2, "0"); });
+$("index").innerHTML = `<div class="ih">Index <span>scroll or jump</span></div>` + [...document.querySelectorAll(".st")].map(st => {
+  const n = st.querySelector(".tag b").textContent, name = NAME[st.id] || (st.id === "router" ? "Ask the router" : st.id === "also" ? "Also worked on" : st.querySelector("h2")?.textContent || "");
+  const kind = st.id === "symphony" ? "now" : st.querySelector(".golive") ? "demo" : st.classList.contains("path") ? "path" : "";
+  return `<a href="#${st.id}" class="${st.classList.contains("sys") || st.id === "symphony" ? "s " : ""}${st.id === "tryon" || st.id === "also" ? "sep" : ""}"><b>${n}</b>${esc(name)}<em>${kind}</em></a>`; }).join("");
+const TRY = SYSTEMS.find(s => s.runs);
+function showRun(j) {
+  document.querySelectorAll(".th").forEach(b => { b.classList.toggle("sel", b.dataset.run == j); b.setAttribute("aria-pressed", b.dataset.run == j); });
+  $("runimg").src = `img/tryon-run${+j + 1}.jpg`; $("runimg").alt = `Virtual try-on result, ${TRY.runs[j][0]}`;
+  $("runnote").innerHTML = `<b>${esc(TRY.runs[j][0])}.</b> ${esc(TRY.runs[j][1])}`;
+}
+$("log").addEventListener("click", e => { const b = e.target.closest(".th"); if (!b) return; e.preventDefault(); showRun(b.dataset.run); $("log").open = true; follow(); });
+$("log").addEventListener("toggle", () => follow());
+showRun(3);
+
+/* ============================ the packet ============================ */
+const track = $("track"), pkt = $("pkt"), fill = $("fill"), stations = [...document.querySelectorAll(".st")];
+let ticking = false;
+function follow() {
+  ticking = false;
+  const r = track.getBoundingClientRect(), y = Math.max(0, Math.min(r.height, innerHeight * 0.42 - r.top));
+  pkt.style.transform = `translateY(${y}px)`; fill.style.height = y + "px";
+  let cur = null;
+  for (const s of stations) { const on = s.offsetTop + 44 <= y; if (on) cur = s; if (on !== s.classList.contains("on")) { s.classList.toggle("on", on); s.querySelectorAll("svg").forEach(g => (on ? g.unpauseAnimations() : g.pauseAnimations())); } }
+  where(cur);
+}
+function where(cur) {
+  const w = $("where"); if (!cur || cur.id === "router") { w.classList.remove("show"); return; }
+  const n = cur.querySelector(".tag b").textContent, name = NAME[cur.id] || (cur.id === "also" ? "Also worked on" : cur.querySelector("h2")?.textContent || "");
+  $("wtxt").textContent = `${n} / ${String(stations.length - 1).padStart(2, "0")} · ${name}`; w.classList.add("show");
+}
+addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(follow); } }, { passive: true });
+addEventListener("resize", follow);
+document.querySelectorAll(".sys svg").forEach(g => g.pauseAnimations());
+follow();
+
+/* ============================ router ============================ */
+let seq = 0, timer;
+async function route() {
+  const q = $("q").value.trim(), my = ++seq;
+  document.querySelectorAll(".routed").forEach(e => e.classList.remove("routed"));
+  if (!q) { $("routes").innerHTML = ""; return; }
+  const r = await rank(q); if (my !== seq) return;
+  const best = new Map(); for (const h of r) if (h.s > 0 && !best.has(h.c.p)) best.set(h.c.p, h);
+  const all = [...best.values()], top = all.filter((h, k) => k === 0 || h.s >= all[0].s * (vecs ? 0.7 : 0.5)).slice(0, 3);
+  if (!top.length) { $("routes").innerHTML = `<div class="note">No stage shares a word with that question.${vecs ? "" : " Once the model loads, routing works by meaning instead."}</div>`; return; }
+  $("routes").innerHTML = top.map((h, k) => `<a class="route" href="#${h.c.p}"><span class="ar">${k ? "↳" : "→"}</span><span class="n">${esc(NAME[h.c.p])}</span><span class="s">${h.s.toFixed(vecs ? 3 : 2)}</span><p>${esc(h.c.text)}</p></a>`).join("")
+    + `<div class="note">${vecs ? "Scored by cosine similarity. The top stage is highlighted below; click to travel there." : "Scored by shared keywords until the model loads."}</div>`;
+  const el = $(top[0].c.p); el.classList.add("routed"); const b = el.querySelector(".badge"); if (b) b.textContent = "routed · " + top[0].s.toFixed(vecs ? 2 : 1);
+}
+$("q").addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(route, 140); });
+$("q").addEventListener("focus", loadModel, { once: true });
+$("try").innerHTML = "Try: " + SUGGEST.map(s => `<button data-q="${esc(s)}">${esc(s)}</button>`).join(" · ");
+$("try").addEventListener("click", e => { const b = e.target.closest("[data-q]"); if (b) { $("q").value = b.dataset.q; route(); loadModel(); } });
+$("load").onclick = loadModel;
+
+/* ============================ router eval ============================ */
+$("nev").textContent = EVALS.length;
+const rankOf = (r, want) => { const seen = []; for (const h of r) { if (h.s <= 0) break; if (!seen.includes(h.c.p)) seen.push(h.c.p); if (h.c.p === want) return seen.length; } return Infinity; };
+const summ = a => ({ top1: a.filter(r => r === 1).length, mrr: a.reduce((s, r) => s + 1 / r, 0) / a.length });
+const cell = (r, want) => { const k = rankOf(r, want); return k === 1 ? `<td class="y">✓</td>` : `<td class="x">✗ ${r[0].s > 0 ? esc(NAME[r[0].c.p]) : "nothing"}${k < Infinity ? `<small>right stage ranked ${k}</small>` : ""}</td>`; };
+$("run").onclick = async () => {
+  $("run").disabled = true; $("evst").textContent = "loading the model…";
+  const ok = await loadModel(), n = EVALS.length, rows = [], K = [], E = [];
+  for (const [i, [q, want]] of EVALS.entries()) { $("evst").textContent = `question ${i + 1} of ${n}`;
+    const kw = bm25(q), em = ok ? await rank(q) : null; K.push(rankOf(kw, want)); if (em) E.push(rankOf(em, want));
+    rows.push(`<tr><td>${esc(q)}<small>should reach ${esc(NAME[want])}</small></td>${cell(kw, want)}${em ? cell(em, want) : "<td>n/a</td>"}</tr>`); }
+  const k = summ(K), e = ok ? summ(E) : null;
+  $("kv").innerHTML = `${k.top1} / ${n}<small>MRR ${k.mrr.toFixed(2)}</small>`;
+  $("ev").innerHTML = e ? `${e.top1} / ${n}<small>MRR ${e.mrr.toFixed(2)}</small>` : "–";
+  $("evout").innerHTML = `<table><thead><tr><th>Question</th><th>Keywords</th><th>Model</th></tr></thead><tbody>${rows.join("")}</tbody></table>`;
+  $("evst").textContent = `ran in your browser at ${new Date().toLocaleTimeString()}`; $("run").disabled = false; $("run").textContent = "Run again"; follow();
+};
+
+/* ============================ live plant demo ============================ */
+const PLANT_BEFORE = {"leaf_30.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_37.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_20.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_01.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_12.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_08.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_18.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_26.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_16.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_05.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_25.jpg": [["Orange___Haunglongbing_(Citrus_greening)", 0.1009], ["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0978], ["Soybean___healthy", 0.0929]], "leaf_15.jpg": [["Tomato___Tomato_Yellow_Leaf_Curl_Virus", 0.0996], ["Orange___Haunglongbing_(Citrus_greening)", 0.0983], ["Soybean___healthy", 0.0943]]};
+const PLANT_CLASSES = ["Apple___Apple_scab", "Apple___Black_rot", "Apple___Cedar_apple_rust", "Apple___healthy", "Blueberry___healthy", "Cherry_(including_sour)___Powdery_mildew", "Cherry_(including_sour)___healthy", "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot", "Corn_(maize)___Common_rust_", "Corn_(maize)___Northern_Leaf_Blight", "Corn_(maize)___healthy", "Grape___Black_rot", "Grape___Esca_(Black_Measles)", "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)", "Grape___healthy", "Orange___Haunglongbing_(Citrus_greening)", "Peach___Bacterial_spot", "Peach___healthy", "Pepper,_bell___Bacterial_spot", "Pepper,_bell___healthy", "Potato___Early_blight", "Potato___Late_blight", "Potato___healthy", "Raspberry___healthy", "Soybean___healthy", "Squash___Powdery_mildew", "Strawberry___Leaf_scorch", "Strawberry___healthy", "Tomato___Bacterial_spot", "Tomato___Early_blight", "Tomato___Late_blight", "Tomato___Leaf_Mold", "Tomato___Septoria_leaf_spot", "Tomato___Spider_mites Two-spotted_spider_mite", "Tomato___Target_Spot", "Tomato___Tomato_Yellow_Leaf_Curl_Virus", "Tomato___Tomato_mosaic_virus", "Tomato___healthy"];
+const pretty = c => { const [plant, cond] = c.split("___"); const pl = plant.replace(/_/g, " ").replace(/,/g, "").replace(/\(including sour\)/, "").replace(/\s+/g, " ").trim();
+  return [pl, cond.replace(/_/g, " ").replace(/\s+/g, " ").trim().replace(new RegExp("^" + pl.split(" ")[0] + " ", "i"), "")]; };
+let tfReady = null, plantModel = null;
+function loadPlant() {
+  if (tfReady) return tfReady;
+  tfReady = (async () => {
+    $("pst").className = "pstat"; $("pst").textContent = "loading TensorFlow.js…";
+    await new Promise((ok, bad) => { const sc = document.createElement("script"); sc.src = "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"; sc.onload = ok; sc.onerror = bad; document.head.append(sc); });
+    $("pst").textContent = "downloading the model · 22 MB…";
+    plantModel = await tf.loadGraphModel("models/plant/model.json");
+    tf.tidy(() => { const o = plantModel.predict(tf.zeros([1, 224, 224, 3])); (o instanceof tf.Tensor ? o : Object.values(o)[0]).dataSync(); });
+    return plantModel;
+  })().catch(e => { console.error(e); tfReady = null; $("pst").textContent = "the model could not load here"; throw e; });
+  return tfReady;
+}
+const barsHtml = list => list.map(([c, p]) => { const [pl, cd] = pretty(c); return `<div class="bar1"><div class="t"><b>${esc(pl)} · ${esc(cd)}</b><span>${(p * 100).toFixed(1)}%</span></div><div class="g"><i data-w="${(p * 100).toFixed(1)}"></i></div></div>`; }).join("");
+const growBars = el => requestAnimationFrame(() => el.querySelectorAll(".g i").forEach(i => (i.style.width = i.dataset.w + "%")));
+async function diagnose(img, truthLabel, leafFile) {
+  const cv = $("pcv"), cx = cv.getContext("2d");
+  cx.imageSmoothingEnabled = false;                       // the model was trained on nearest-neighbour resized images
+  cx.drawImage(img, 0, 0, 224, 224);
+  ["bars", "bars0", "v0", "v1", "n0"].forEach(id => ($(id).innerHTML = "")); $("truth").textContent = "";
+  try { await loadPlant(); } catch { return; }
+  const t0 = performance.now();
+  const probs = tf.tidy(() => { const x = tf.browser.fromPixels(cv).toFloat().expandDims(0); const o = plantModel.predict(x); return (o instanceof tf.Tensor ? o : Object.values(o)[0]).dataSync(); });
+  const top = [...probs.keys()].sort((a, b) => probs[b] - probs[a]).slice(0, 3);
+  $("pst").className = "pstat live"; $("pst").textContent = `ran on your device in ${Math.round(performance.now() - t0)} ms`;
+  const after = top.map(i => [PLANT_CLASSES[i], probs[i]]);
+  const before = leafFile && PLANT_BEFORE[leafFile] ? PLANT_BEFORE[leafFile] : [["Orange___Haunglongbing_(Citrus_greening)", 0.1009]];
+  $("bars").innerHTML = barsHtml(after); $("bars0").innerHTML = barsHtml(before); growBars($("bars")); growBars($("bars0"));
+  if (truthLabel) {
+    const [pl, cd] = pretty(truthLabel); $("truth").innerHTML = `Dataset label: <b>${esc(pl)} · ${esc(cd)}</b>`;
+    const v = (el, ok) => { el.className = "verdict " + (ok ? "y" : "x"); el.textContent = ok ? "correct" : "wrong"; };
+    v($("v0"), before[0][0] === truthLabel); v($("v1"), after[0][0] === truthLabel);
+  }
+  if (!leafFile) $("n0").textContent = "The saved model gives this same answer for every image (checked on 3,800 images), so it is not re-run here.";
+
+}
+$("leaves").addEventListener("click", e => {
+  const b = e.target.closest("[data-leaf]"); if (!b) return;
+  document.querySelectorAll("#leaves button").forEach(x => x.classList.toggle("sel", x === b));
+  const idx = +b.dataset.leaf.match(/leaf_(\d+)/)[1], img = new Image();
+  img.onload = () => diagnose(img, PLANT_CLASSES[idx], b.dataset.leaf); img.src = b.querySelector("img").src;
+});
+$("upl").addEventListener("change", e => {
+  const f = e.target.files[0]; if (!f) return;
+  document.querySelectorAll("#leaves button").forEach(x => x.classList.remove("sel"));
+  const img = new Image(); img.onload = () => { diagnose(img, null, null); URL.revokeObjectURL(img.src); }; img.src = URL.createObjectURL(f);
+});
+
+/* ============================ try-on fitting room ============================ */
+let tryP = "05309", tryC = "05230";
+function showTry() {
+  document.querySelectorAll("#tp button").forEach(b => b.classList.toggle("sel", b.dataset.p === tryP));
+  document.querySelectorAll("#tc button").forEach(b => b.classList.toggle("sel", b.dataset.c === tryC));
+  $("tro").src = `img/tryon/${tryP}_${tryC}_orig.jpg`; $("trn").src = `img/tryon/${tryP}_${tryC}_new.jpg`;
+}
+function slide(v) { $("trn").style.clipPath = `inset(0 0 0 ${v}%)`; $("bah").style.left = v + "%"; }
+$("bar").addEventListener("input", e => slide(e.target.value)); slide(50);
+$("tp").addEventListener("click", e => { const b = e.target.closest("[data-p]"); if (b) { tryP = b.dataset.p; showTry(); } });
+$("tc").addEventListener("click", e => { const b = e.target.closest("[data-c]"); if (b) { tryC = b.dataset.c; showTry(); } });
+showTry();
+
+$("copy").onclick = async e => { try { await navigator.clipboard.writeText(EMAIL); e.target.textContent = "Copied"; } catch { e.target.textContent = EMAIL; } };
+const small = innerWidth <= 640 || (navigator.connection && navigator.connection.saveData);
+if (small) $("load").hidden = false; else setTimeout(loadModel, 300);
+</script>
+</body>
+</html>
